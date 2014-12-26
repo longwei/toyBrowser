@@ -9,5 +9,7 @@ TEMPLATE = lib
 CONFIG += staticlib
 TARGET = myapp
 
-SOURCES += myclass.cpp
-HEADERS += myclass.h
+SOURCES += myclass.cpp \
+    nodes/node.cpp
+HEADERS += myclass.h \
+    nodes/node.h

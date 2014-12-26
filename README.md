@@ -24,3 +24,7 @@ Sandbox:
 
 REF:
 http://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
+
+Day1:
+parsing HTML
+
