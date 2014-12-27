@@ -1,18 +1,22 @@
-#include "node.h"
-#include <iostream>
+#include <QDebug>
 
-Node::Node(NodeType type, const NodeVector& children):
+#include "node.h"
+
+Node::Node(NodeType type, const NodeVector& children, QObject *parent):
+    QObject(parent),
     m_nodetype(type),
     m_children(children)
 {
+
 }
+
 
 Node::~Node()
 {
     m_children.clear();
 }
 
-std::string Node::toString(){
+QString Node::toString(){
     if(m_nodetype == Element){
         return "ELEMENT";
     } else {
@@ -20,11 +24,11 @@ std::string Node::toString(){
     }
 }
 
-void Node::prettyPrint(std::string prefix){
-    std::cout << prefix <<toString() << std::endl;
-    prefix = "-" + prefix;
+void Node::prettyPrint(QString prefix){
+    qDebug() << toString().prepend(prefix);
+    QString next_prefix = prefix.prepend("-");
     for(auto& children: m_children){
-        children->prettyPrint(prefix);
+        children->prettyPrint(next_prefix);
     }
 }
 

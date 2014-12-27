@@ -1,7 +1,7 @@
 #include "elementnode.h"
 
 
-ElementNode::ElementNode(const std::string& tagName,
+ElementNode::ElementNode(const QString& tagName,
                          const AttributesMap &attrs,
                          const NodeVector &children):
     Node(Element, children),
@@ -18,6 +18,6 @@ ElementNode::~ElementNode()
 
 }
 
-std::string ElementNode::toString(){
+QString ElementNode::toString(){
     return m_tagName;
 }

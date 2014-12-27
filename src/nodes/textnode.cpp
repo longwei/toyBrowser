@@ -1,6 +1,6 @@
 #include "textnode.h"
 
-TextNode::TextNode(const std::string& text, const NodeVector &children):
+TextNode::TextNode(const QString& text, const NodeVector &children):
     Node(Text, children),
     m_text(text)
 {
@@ -13,15 +13,15 @@ TextNode::~TextNode()
 
 }
 
-void TextNode::setText(std::string text){
+void TextNode::setText(QString text){
     m_text = text;
 }
 
-std::string TextNode::getText(){
+QString TextNode::getText(){
     return m_text;
 }
 
 
-std::string TextNode::toString(){
+QString TextNode::toString(){
     return m_text;
 }

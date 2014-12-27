@@ -1,17 +1,14 @@
-#include <iostream>
-#include <QtTest>
-#include <myclass.h>
+#include <QTest>
 
-class MyFirstTest: public QObject
+
+#include "testa.h"
+
+int main(int argc, char *argv[])
 {
-    Q_OBJECT
-private slots:
-    void initTestCase()
-    { qDebug("called before everything else"); }
-    void myFirstTest()
-    { QVERIFY(1 == 1); }
-    void mySecondTest()
-    { QVERIFY(1 != 2); }
-    void cleanupTestCase()
-    { qDebug("called after myFirstTest and mySecondTest"); }
-};
+    QCoreApplication app(argc, argv);
+    TestQString test1;
+    QTest::qExec(&test1,argc,argv);
+
+
+    return 0;
+}

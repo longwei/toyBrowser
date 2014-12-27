@@ -6,7 +6,7 @@ CONFIG += ordered c++11
 SUBDIRS = \
     src \
     app \
-    tests
+    test
 
 app.depends = src
 tests.depends = src

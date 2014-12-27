@@ -1,8 +1,8 @@
 #ifndef TESTA_H
 #define TESTA_H
 
-#include <QObject>
-#include <QtTest>
+#include "AutoTest.h"
+
 
 class TestQString: public QObject
 {
@@ -10,4 +10,7 @@ class TestQString: public QObject
 private slots:
     void toUpper();
 };
+
+DECLARE_TEST(TestQString)
+
 #endif // TESTA_H

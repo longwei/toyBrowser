@@ -1,12 +1,13 @@
+#include <QApplication>
 #include <iostream>
 #include <myclass.h>
 #include <nodes/node.h>
 #include <nodes/elementnode.h>
 #include <nodes/textnode.h>
-#include <QApplication>
 
 #include "mainwindow.h"
 using namespace std;
+
 
 int main(int argc, char *argv[])
 {
@@ -20,10 +21,12 @@ int main(int argc, char *argv[])
     body.addChildNode(text2);
     root.addChildNode(body);
 
-    root.prettyPrint();
-//    cout << adder.addition(10, 20) << endl;
+    Node* doc = (Node*)&root;
+    doc->prettyPrint();
+
     MainWindow w;
     w.show();
 
     return a.exec();
 }
+

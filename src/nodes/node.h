@@ -1,32 +1,30 @@
-#ifndef RENDERNODE_H
-#define RENDERNODE_H
+#ifndef NODE_H
+#define NODE_H
 
-#include <vector>
-#include <string>
-#include <iostream>
+#include <QObject>
+#include <QVector>
 
 class Node;
-//use pointer as I need virtual behavior;
-typedef std::vector<Node*> NodeVector;
+typedef QVector<Node*> NodeVector;
 
-class Node
+class Node : public QObject
 {
+    Q_OBJECT
 public:
     enum NodeType{
         Text = 1,
         Element = 2,
     };
-    Node(NodeType type, const NodeVector& children = NodeVector() );
+    explicit Node(NodeType type, const NodeVector& children = NodeVector(), QObject *parent = 0 );
     virtual ~Node();
     virtual void addChildNode(Node& child);
-    virtual void prettyPrint(std::string prefix = std::string());
-    virtual std::string toString();
-
-
+    virtual void prettyPrint(QString prefix = QString());
+    virtual QString toString();
 
 protected:
     NodeVector m_children;
     NodeType m_nodetype;
+
 };
 
-#endif // RENDERNODE_H
+#endif // NODE_H

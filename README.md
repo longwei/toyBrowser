@@ -25,6 +25,17 @@ Sandbox:
 REF:
 http://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
 
-Day1:
-parsing HTML
+C++ implementation of Matt Brubeck's blog "let's build a broweser engine"
+[blog]: http://limpet.net/mbrubeck/2014/08/08/toy-layout-engine-1.html
+[robinson]: https://github.com/mbrubeck/robinson
 
+
+Status
+------
+- [x] Part 1: Getting started
+- [ ] Part 2: HTML
+- [ ] Part 3: CSS
+- [ ] Part 4: Style
+- [ ] Part 5: Boxes
+- [ ] Part 6: Block layout 
+- [ ] Part 7: Painting 101
