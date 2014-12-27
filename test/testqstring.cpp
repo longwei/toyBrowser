@@ -1,4 +1,4 @@
-#include "testa.h"
+#include "testqstring.h"
 
 void TestQString::toUpper() {
      QString str = "Hello";

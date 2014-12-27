@@ -23,14 +23,6 @@ PRE_TARGETDEPS += ../src/*.a
 HEADERS += \
     mainwindow.h
 
-#message($$OUT_PWD)
-#message($$PWD)
-#install_it.path = $$OUT_PWD
-#install_it.files = $$PWD/tt
-#INSTALLS += install_it
-
-message($$OUT_PWD)
-message($$PWD)
 target.path += $$OUT_PWD
 target.files += $$PWD/test.*
 INSTALLS += target

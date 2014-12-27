@@ -19,16 +19,30 @@ QChar Parser::peekChar(){
     return m_dom.at(m_pos);
 }
 
-QChar Parser::comsumeChar(){
+QChar Parser::consumeChar(){
     return m_dom.at(m_pos++);
+}
+
+QChar Parser::consumeCharAny(QVector<QChar> expected){
+    QChar actual = consumeChar();
+    for(QChar c: expected) {
+        if(actual == c){
+            return actual;
+        }
+    }
+    qDebug() << actual << " is not expected";
+    return QChar();
 }
 
 bool Parser::startsWith(const QString str){
     QStringRef subString(&m_dom, m_pos, m_length-m_pos);
-//    qDebug() << subString.toString();
     return subString.startsWith(str);
 }
 
 bool Parser::eof(){
     return m_pos >= m_length;
 }
+
+//QString Parser::consumeWhile(Func fun){
+//    return "test";
+//}
