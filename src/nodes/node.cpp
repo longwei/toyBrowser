@@ -1,4 +1,5 @@
 #include "node.h"
+#include <iostream>
 
 Node::Node(NodeType type, const NodeVector& children):
     m_nodetype(type),
@@ -12,6 +13,21 @@ Node::~Node()
 }
 
 std::string Node::toString(){
-    return "hello";
+    if(m_nodetype == Element){
+        return "ELEMENT";
+    } else {
+        return "TEXT";
+    }
 }
 
+void Node::prettyPrint(std::string prefix){
+    std::cout << prefix <<toString() << std::endl;
+    prefix = "-" + prefix;
+    for(auto& children: m_children){
+        children->prettyPrint(prefix);
+    }
+}
+
+void Node::addChildNode(Node& child){
+    m_children.push_back(&child);
+}

@@ -14,6 +14,7 @@ public:
                 const AttributesMap& attrs = AttributesMap(),
                 const NodeVector& children = NodeVector() );
     ~ElementNode();
+    virtual std::string toString();
 
 
 

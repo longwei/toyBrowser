@@ -11,7 +11,9 @@ TARGET = myapp
 
 SOURCES += myclass.cpp \
     nodes/node.cpp \
-    nodes/elementnode.cpp
+    nodes/elementnode.cpp \
+    nodes/textnode.cpp
 HEADERS += myclass.h \
     nodes/node.h \
-    nodes/elementnode.h
+    nodes/elementnode.h \
+    nodes/textnode.h

@@ -5,9 +5,9 @@
 #include <string>
 #include <iostream>
 
-//this is the basic DOM node type,
 class Node;
-typedef std::vector<Node> NodeVector;
+//use pointer as I need virtual behavior;
+typedef std::vector<Node*> NodeVector;
 
 class Node
 {
@@ -18,7 +18,9 @@ public:
     };
     Node(NodeType type, const NodeVector& children = NodeVector() );
     virtual ~Node();
-    std::string toString();
+    virtual void addChildNode(Node& child);
+    virtual void prettyPrint(std::string prefix = std::string());
+    virtual std::string toString();
 
 
 
