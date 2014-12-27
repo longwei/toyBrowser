@@ -10,6 +10,8 @@ CONFIG += staticlib
 TARGET = myapp
 
 SOURCES += myclass.cpp \
-    nodes/node.cpp
+    nodes/node.cpp \
+    nodes/elementnode.cpp
 HEADERS += myclass.h \
-    nodes/node.h
+    nodes/node.h \
+    nodes/elementnode.h

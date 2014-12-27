@@ -1,13 +1,6 @@
 #include "node.h"
 
-
-Node::Node(NodeType type):
-    m_nodetype(type)
-{
-    m_children = new NodeVector();
-}
-
-Node::Node(NodeType type, NodeVector* children):
+Node::Node(NodeType type, const NodeVector& children):
     m_nodetype(type),
     m_children(children)
 {
@@ -15,6 +8,7 @@ Node::Node(NodeType type, NodeVector* children):
 
 Node::~Node()
 {
+    m_children.clear();
 }
 
 std::string Node::toString(){

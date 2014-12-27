@@ -6,8 +6,6 @@
 #include <iostream>
 
 //this is the basic DOM node type,
-
-
 class Node;
 typedef std::vector<Node> NodeVector;
 
@@ -18,16 +16,14 @@ public:
         Text = 1,
         Element = 2,
     };
-
-    Node(NodeType type);
-    Node(NodeType type, NodeVector* children);
+    Node(NodeType type, const NodeVector& children = NodeVector() );
     virtual ~Node();
     std::string toString();
 
 
 
 protected:
-    NodeVector* m_children;
+    NodeVector m_children;
     NodeType m_nodetype;
 };
 
