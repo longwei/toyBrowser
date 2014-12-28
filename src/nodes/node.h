@@ -2,10 +2,10 @@
 #define NODE_H
 
 #include <QObject>
-#include <QVector>
+#include <QList>
 
 class Node;
-typedef QVector<Node*> NodeVector;
+typedef QList<Node*> NodeVector;
 
 class Node : public QObject
 {

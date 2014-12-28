@@ -14,6 +14,8 @@ public:
 
     QChar peekChar();
     QChar consumeChar();
+    QChar consumeChar(QChar expected);
+    QString consumeString(QString expected);
     QChar consumeCharAny(QVector<QChar> expected);
     bool startsWith(const QString str);
     bool eof();
@@ -28,11 +30,7 @@ public:
         return result;
     }
 
-    void consumeWhitespaceOrNewline() {
-//        consumeWhile(c -> c == '\n' || c == '\r');
-        auto test = [] (QChar c) -> int { return c.isSpace() || c == QChar('\n') || c == QChar('\r') ;};
-        consumeWhile(test);
-    }
+    void consumeWhitespaceOrNewline();
 
 protected:
     int m_pos;

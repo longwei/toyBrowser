@@ -13,6 +13,7 @@ Node::Node(NodeType type, const NodeVector& children, QObject *parent):
 
 Node::~Node()
 {
+    //todo, replaced with shared pointer
     m_children.clear();
 }
 

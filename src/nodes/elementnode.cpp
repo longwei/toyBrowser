@@ -2,7 +2,7 @@
 
 
 ElementNode::ElementNode(const QString& tagName,
-                         const AttributesMap &attrs,
+                         const QMap<QString, QString> &attrs,
                          const NodeVector &children):
     Node(Element, children),
     m_tagName(tagName),
@@ -14,7 +14,6 @@ ElementNode::ElementNode(const QString& tagName,
 
 ElementNode::~ElementNode()
 {
-    //todo
 
 }
 

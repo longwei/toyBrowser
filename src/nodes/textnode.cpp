@@ -9,8 +9,6 @@ TextNode::TextNode(const QString& text, const NodeVector &children):
 
 TextNode::~TextNode()
 {
-    //todo
-
 }
 
 void TextNode::setText(QString text){

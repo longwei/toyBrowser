@@ -43,6 +43,28 @@ bool Parser::eof(){
     return m_pos >= m_length;
 }
 
-//QString Parser::consumeWhile(Func fun){
-//    return "test";
-//}
+void Parser::consumeWhitespaceOrNewline(){
+    auto test = [] (QChar c) -> bool { return c.isSpace() || c == QChar('\n') || c == QChar('\r') ;};
+    consumeWhile(test);
+}
+
+
+QChar Parser::consumeChar(QChar expected) {
+    QChar actual = consumeChar();
+
+    if (actual != expected) {
+        qDebug() << QString("Got %1, expected %2.").arg(actual).arg(expected);
+    }
+    return actual;
+}
+
+QString Parser::consumeString(QString expected) {
+    QString actual = "";
+
+    for (int i = 0; i < expected.length(); i++) {
+        actual += consumeChar(expected.at(i));
+
+    }
+
+    return actual;
+}
