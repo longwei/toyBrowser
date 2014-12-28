@@ -2,10 +2,10 @@
 
 #include "node.h"
 
-Node::Node(NodeType type, const NodeVector& children, QObject *parent):
+Node::Node(NodeType type, const NodeVector children, QObject *parent):
     QObject(parent),
-    m_nodetype(type),
-    m_children(children)
+    m_children(children),
+    m_nodetype(type)
 {
 
 }
@@ -33,6 +33,6 @@ void Node::prettyPrint(QString prefix){
     }
 }
 
-void Node::addChildNode(Node& child){
-    m_children.push_back(&child);
+void Node::addChildNode(QSharedPointer<Node> child){
+    m_children.push_back(child);
 }

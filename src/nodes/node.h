@@ -2,10 +2,8 @@
 #define NODE_H
 
 #include <QObject>
-#include <QList>
 
-class Node;
-typedef QList<Node*> NodeVector;
+#include "nodetypes.h"
 
 class Node : public QObject
 {
@@ -15,9 +13,11 @@ public:
         Text = 1,
         Element = 2,
     };
-    explicit Node(NodeType type, const NodeVector& children = NodeVector(), QObject *parent = 0 );
+    explicit Node(NodeType type,
+                  const NodeVector children = NodeVector(),
+                  QObject *parent = 0);
     virtual ~Node();
-    virtual void addChildNode(Node& child);
+    virtual void addChildNode(QSharedPointer<Node> child);
     virtual void prettyPrint(QString prefix = QString());
     virtual QString toString();
 

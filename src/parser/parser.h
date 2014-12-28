@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QVector>
 
-
 class Parser : public QObject
 {
     Q_OBJECT

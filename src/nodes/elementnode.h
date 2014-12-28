@@ -2,18 +2,17 @@
 #define ELEMENTNODE_H
 
 #include <QObject>
-#include <QMap>
-#include "nodetypes.h"
 
+#include "nodetypes.h"
 #include "node.h"
 
 class ElementNode : public Node
 {
-public:
-//    typedef QMap<QString, QString> AttributesMap;
-    ElementNode(const QString& tagName,
-                const QMap<QString, QString>& attrs = QMap<QString, QString>(),
-                const NodeVector& children = NodeVector() );
+public:  
+    ElementNode(const QString tagName,
+                const AttributesMap attrs = AttributesMap(),
+                const NodeVector children = NodeVector(),
+                QObject *parent = 0);
     ~ElementNode();
     virtual QString toString();
 

@@ -15,12 +15,13 @@ QString DOMParser::parseTagName(){
     return consumeWhile([] (QChar input) -> bool { return input.isLetterOrNumber(); });
 }
 
-TextNode *DOMParser::parseText(){
+QSharedPointer<TextNode> DOMParser::parseText(){
     QString textcontent = consumeWhile([] (QChar input) -> bool { return input != '<'; });
-    return new TextNode(textcontent);
+    QSharedPointer<TextNode> textNode = QSharedPointer<TextNode>(new TextNode(textcontent));
+    return textNode;
 }
 
-Node* DOMParser::parseNode(){
+QSharedPointer<Node> DOMParser::parseNode(){
     if (startsWith("<")){
         return parseElem();
     } else {
@@ -28,8 +29,8 @@ Node* DOMParser::parseNode(){
     }
 }
 
-QList<Node*> DOMParser::parseNodes(){
-    QList<Node*> nodes;
+QList<QSharedPointer<Node> > DOMParser::parseNodes(){
+    QList<QSharedPointer<Node> > nodes;
     while( !eof() && !startsWith("</")){
         consumeWhitespaceOrNewline();
         nodes.append(parseNode());
@@ -38,14 +39,14 @@ QList<Node*> DOMParser::parseNodes(){
     return nodes;
 }
 
-ElementNode* DOMParser::parseElem(){
+QSharedPointer<ElementNode> DOMParser::parseElem(){
     //open tag
     consumeChar('<');
     QString tagName = parseTagName();
     QMap<QString, QString> attrs = parseAttrs();
     consumeChar('>');
     //contents
-    QList<Node*> children = parseNodes();
+    QList<QSharedPointer<Node> > children = parseNodes();
 
     //closing tag
     consumeChar('<');
@@ -54,7 +55,7 @@ ElementNode* DOMParser::parseElem(){
     Q_ASSERT(closeTagName == tagName);
 
     consumeChar('>');
-    ElementNode* ret= new ElementNode(tagName, attrs, children);
+    QSharedPointer<ElementNode> ret= QSharedPointer<ElementNode>(new ElementNode(tagName, attrs, children));
     return ret;
 }
 
@@ -92,13 +93,13 @@ QString DOMParser::parseAttrValue() {
 }
 
 
-Node* DOMParser::parse(){
-    QList<Node*> nodes = parseNodes();
+QSharedPointer<Node> DOMParser::parse(){
+    QList<QSharedPointer<Node> > nodes = parseNodes();
 
     if (nodes.size() == 1) {
-        return nodes.at(0);
+        return QSharedPointer<Node>(nodes.at(0));
     } else {
-        return new ElementNode("html", QMap<QString, QString>(), nodes);
+        return QSharedPointer<ElementNode>(new ElementNode("html", QMap<QString, QString>(), nodes));
     }
 
 }

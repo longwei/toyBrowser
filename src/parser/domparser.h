@@ -15,15 +15,15 @@ class DOMParser : public Parser
 public:
     explicit DOMParser(QString input, QObject *parent = 0);
     ~DOMParser();
-    Node* parse();
+    QSharedPointer<Node> parse();
 
 
 private:
     QString parseTagName();
-    TextNode* parseText();
-    Node *parseNode();
-    QList<Node*> parseNodes();
-    ElementNode* parseElem();
+    QSharedPointer<TextNode> parseText();
+    QSharedPointer<Node> parseNode();
+    QList<QSharedPointer<Node> > parseNodes();
+    QSharedPointer<ElementNode> parseElem();
     QMap<QString, QString> parseAttrs();
     QPair<QString,QString> parseAttr();
     QString parseAttrValue();
