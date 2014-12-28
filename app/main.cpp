@@ -4,6 +4,7 @@
 #include <nodes/node.h>
 #include <nodes/elementnode.h>
 #include <nodes/textnode.h>
+#include <parser/domparser.h>
 
 #include "mainwindow.h"
 using namespace std;
@@ -12,17 +13,9 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //todo real parsing
-    ElementNode root("html");
-    ElementNode body("body");
-    TextNode text("Hello World");
-    TextNode text2("foo bar");
-    body.addChildNode(text);
-    body.addChildNode(text2);
-    root.addChildNode(body);
-
-    Node* doc = (Node*)&root;
-    doc->prettyPrint();
+    DOMParser dom("<html><body>hello world</body></html>");
+    Node* root = dom.parse();
+    root->prettyPrint();
 
     MainWindow w;
     w.show();

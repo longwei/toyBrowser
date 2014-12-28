@@ -15,6 +15,7 @@ class DOMParser : public Parser
 public:
     explicit DOMParser(QString input, QObject *parent = 0);
     ~DOMParser();
+    Node* parse();
 
 
 private:
@@ -26,7 +27,7 @@ private:
     QMap<QString, QString> parseAttrs();
     QPair<QString,QString> parseAttr();
     QString parseAttrValue();
-    Node* parse();
+
 
 
 
