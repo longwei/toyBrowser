@@ -12,9 +12,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    DOMParser dom("<html><body>hello world</body></html>");
-    QSharedPointer<Node> root = dom.parse();
-    root->prettyPrint();
+//    DOMParser dom("<html><body>hello world</body></html>");
+//    QSharedPointer<Node> root = dom.parse();
+//    root->prettyPrint();
 
     MainWindow w;
     w.show();

@@ -13,6 +13,7 @@ public:
 
     QChar peekChar();
     QChar consumeChar();
+    QString consumeString(int number);
     QChar consumeChar(QChar expected);
     QString consumeString(QString expected);
     QChar consumeCharAny(QVector<QChar> expected);

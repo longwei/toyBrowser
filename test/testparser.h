@@ -10,6 +10,7 @@ class TestParser : public QObject
 private slots:
     void toUpper();
     void lambda();
+    void toParse();
 };
 DECLARE_TEST(TestParser)
 #endif // TESTPARSER_H

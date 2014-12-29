@@ -1,5 +1,6 @@
 #include "parser.h"
 #include <QDebug>
+#include <QStringRef>
 
 Parser::Parser(QString input, QObject *parent):
     QObject(parent),
@@ -21,6 +22,12 @@ QChar Parser::peekChar(){
 
 QChar Parser::consumeChar(){
     return m_dom.at(m_pos++);
+}
+
+QString Parser::consumeString(int offset){
+    QStringRef subString(&m_dom, m_pos, offset);
+    m_pos += offset;
+    return subString.toString();
 }
 
 QChar Parser::consumeCharAny(QVector<QChar> expected){

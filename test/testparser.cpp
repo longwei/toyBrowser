@@ -1,5 +1,6 @@
 #include "testparser.h"
 #include <parser/parser.h>
+#include <parser/domparser.h>
 #include <functional>
 #include <QDebug>
 
@@ -41,3 +42,9 @@ void TestParser::lambda(){
     QVERIFY( parser5.startsWith("abcdefg") == true);
 }
 
+
+void TestParser::toParse(){
+    DOMParser dom("<html><body>hello world</body></html>");
+    QSharedPointer<Node> root = dom.parse();
+    root->prettyPrint();
+}
