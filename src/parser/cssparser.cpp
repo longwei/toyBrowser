@@ -12,12 +12,15 @@ CSSParser::~CSSParser()
 
 }
 
-QSharedPointer<Stylesheet> CSSParser::parse(){
-    QSharedPointer<Stylesheet> stylesheet(new Stylesheet(parseRules()));
+Stylesheet CSSParser::parse(){
+    Stylesheet stylesheet(parseRules());
     return stylesheet;
 }
 
 QVector<Rule> CSSParser::parseRules(){
+#ifdef CSS_DEBUG
+    qDebug() << Q_FUNC_INFO;
+#endif /* CSS_DEBUG */
     QVector<Rule> rules;
     while(!eof()){
         consumeWhitespaceOrNewline();
@@ -29,43 +32,59 @@ QVector<Rule> CSSParser::parseRules(){
 
 //h1, div.note, #hahah { margin: auto; color: #cc0000; }
 Rule CSSParser::parseRule(){
+#ifdef CSS_DEBUG
+    qDebug() << Q_FUNC_INFO;
+#endif /* CSS_DEBUG */
     Rule rule{parseSimpleSelectors(), parseDeclarations()};
     return rule;
 }
 
 QVector<SimpleSelector> CSSParser::parseSimpleSelectors(){
     QVector<SimpleSelector> selectors;
-    while(peekChar() != '{'){
+    while (true) {
         consumeWhitespaceOrNewline();
         selectors.append(parseSimpleSelector());
         consumeWhitespaceOrNewline();
-        consumeChar(',');
+        QChar c = peekChar();
+        if (c == ',') {
+            consumeChar();
+        } else if (c == '{') {
+            break;
+        } else {
+            qDebug() << "Illegal character in selector list";
+        }
     }
     return selectors;
 
 }
 
-//h1, #hahah, *, .div
+// Parse one simple selector, e.g.: `type#id.class1.class2.class3`
 SimpleSelector CSSParser::parseSimpleSelector(){
     QString tagName;
     QString id;
     QVector<QString> classes;
-    while(!eof()){
+    if(!eof()){
         QChar c = peekChar();
         if(c == '#'){
-            consumeChar();
+            consumeChar('#');
             id = parseIdentifier();
+            qDebug() << "#";
         } else if(c == '.') {
-            consumeChar();
+            consumeChar('.');
             classes.append(parseIdentifier());
+            qDebug() << ".";
         } else if(c == '*'){
-            consumeChar();//TODO
+            consumeChar('*');//TODO
+            qDebug() << "*";
         } else if(isVaidIdentifier(c)){
             //h1 div.note
             tagName = parseIdentifier();
         }
     }
     SimpleSelector ret{tagName, id, classes};
+#ifdef CSS_DEBUG
+    qDebug() << Q_FUNC_INFO;
+#endif /* CSS_DEBUG */
     return ret;
 
 }
@@ -74,14 +93,25 @@ SimpleSelector CSSParser::parseSimpleSelector(){
 QVector<Declaration> CSSParser::parseDeclarations(){
     consumeChar('{');
     QVector<Declaration> declarations;
-    while(peekChar() != '}'){
+    //    while(peekChar() != '}'){
+    //        declarations.append(parseDeclaration());
+    //    }
+
+    while (true) {
+        consumeWhitespaceOrNewline();
+        if (peekChar() == '}') {
+            consumeChar();
+            break;
+        }
         declarations.append(parseDeclaration());
     }
-    consumeChar('}');
     return declarations;
 }
 //margin: auto;
 Declaration CSSParser::parseDeclaration(){
+#ifdef CSS_DEBUG
+    qDebug() << Q_FUNC_INFO;
+#endif /* CSS_DEBUG */
     QString propertyName = parseIdentifier();
     consumeWhitespaceOrNewline();
     consumeChar(':');
@@ -93,8 +123,11 @@ Declaration CSSParser::parseDeclaration(){
     return ret;
 }
 
-//auto, #cc0000, 78px
+//auto, #000000, 78px
 Value CSSParser::parseValue(){
+#ifdef CSS_DEBUG
+    qDebug() << Q_FUNC_INFO;
+#endif /* CSS_DEBUG */
     QChar c = peekChar();
     if (c.isDigit()) {
         return parseLength();
@@ -105,12 +138,15 @@ Value CSSParser::parseValue(){
         keyword.keyword = parseIdentifier();
         return keyword;
     }
-    qDebug() << Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO << "enter a dead end";
 
 }
 
 //123px
 LengthValue CSSParser::parseLength(){
+#ifdef CSS_DEBUG
+    qDebug() << Q_FUNC_INFO;
+#endif /* CSS_DEBUG */
     float x = parserFloat();
     Unit u = parseUnit();
     LengthValue ret;
@@ -121,6 +157,9 @@ LengthValue CSSParser::parseLength(){
 
 //#aabbcc
 ColorValue CSSParser::parseColor(){
+#ifdef CSS_DEBUG
+    qDebug() << Q_FUNC_INFO;
+#endif /* CSS_DEBUG */
     consumeChar('#');
     ColorValue ret;
     int r = parseHexPair();
@@ -130,15 +169,20 @@ ColorValue CSSParser::parseColor(){
     ret.g = g;
     ret.b = b;
     ret.a = 255;
+
     return ret;
 }
 
 //11
 int CSSParser::parseHexPair(){
+#ifdef CSS_DEBUG
+    qDebug() << Q_FUNC_INFO;
+#endif /* CSS_DEBUG */
     QString doubledigit = consumeString(2);
+
     bool isdigit;
     int hexpair = doubledigit.toInt(&isdigit, 10);
-    if(isdigit){
+    if( isdigit ){
         return hexpair;
     } else {
         qDebug() << "not a valid double digit" << doubledigit;

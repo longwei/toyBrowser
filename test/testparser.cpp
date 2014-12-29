@@ -1,6 +1,8 @@
 #include "testparser.h"
 #include <parser/parser.h>
 #include <parser/domparser.h>
+#include <parser/cssparser.h>
+#include <parser/stylesheet.h>
 #include <functional>
 #include <QDebug>
 
@@ -43,8 +45,19 @@ void TestParser::lambda(){
 }
 
 
-void TestParser::toParse(){
+void TestParser::domParse(){
     DOMParser dom("<html><body>hello world</body></html>");
     QSharedPointer<Node> root = dom.parse();
     root->prettyPrint();
+}
+
+void TestParser::cssParse(){
+//    QString input = "h1, h2, h3 { margin: auto; color: #cc0000; }";
+//    qDebug() << "***";
+//    CSSParser cssdom(input);
+//    qDebug() << "***";
+//    Stylesheet x = cssdom.parse();
+//    qDebug() << "parsefinished";
+//    qDebug() << x.toString();
+
 }

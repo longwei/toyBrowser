@@ -21,6 +21,9 @@ QChar Parser::peekChar(){
 }
 
 QChar Parser::consumeChar(){
+    if(m_pos >= m_length){
+        qDebug() << "it is the end";
+    }
     return m_dom.at(m_pos++);
 }
 
@@ -60,7 +63,7 @@ QChar Parser::consumeChar(QChar expected) {
     QChar actual = consumeChar();
 
     if (actual != expected) {
-        qDebug() << QString("Got %1, expected %2.").arg(actual).arg(expected);
+        qDebug() << QString("Got %1, expected %2").arg(actual).arg(expected);
     }
     return actual;
 }

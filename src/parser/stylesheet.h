@@ -11,35 +11,40 @@ enum Unit{
     Undefined,
 };
 
-struct Value {
-//    virtual QString toString();
+class Value {
+public:
+    virtual QString toString();
+    QString m_value;
 };
 
 
-struct KeywordValue: Value{
+class KeywordValue: public Value{
+public:
     QString keyword;
-//    QString toString();
+    QString toString();
 };
 
-struct LengthValue: Value{
+class LengthValue: public Value{
+public:
     Unit unit;
     float length;
-//    QString toString();
+    QString toString();
 };
 
-struct ColorValue: Value{
+class ColorValue: public Value{
+public:
     int r;
     int g;
     int b;
     int a;
     QString toString();
-
 };
 
 struct SimpleSelector{
     QString tagName;
     QString id;
     QVector<QString> classes;
+    QString toString();
 };
 
 struct Declaration{
@@ -48,8 +53,9 @@ struct Declaration{
 };
 
 struct Rule {
-    QVector<SimpleSelector> selector;
-    QVector<Declaration> declaration;
+    QVector<SimpleSelector> selectors;
+    QVector<Declaration> declarations;
+    QString toString();
 };
 
 class Stylesheet
@@ -57,6 +63,7 @@ class Stylesheet
 public:
     Stylesheet(QVector<Rule> rules);
     ~Stylesheet();
+    QString toString();
 
 private:
     QVector<Rule> m_rules;

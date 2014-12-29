@@ -4,6 +4,7 @@ CONFIG   += console
 CONFIG   -= app_bundle
 
 TEMPLATE = lib
+#DEFINES += CSS_DEBUG
 
 CONFIG += staticlib
 TARGET = myapp
