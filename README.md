@@ -33,8 +33,8 @@ C++ implementation of Matt Brubeck's blog "let's build a broweser engine"
 Status
 ------
 - [x] Part 1: Getting started
-- [ ] Part 2: HTML
-- [ ] Part 3: CSS
+- [x] Part 2: HTML
+- [x] Part 3: CSS
 - [ ] Part 4: Style
 - [ ] Part 5: Boxes
 - [ ] Part 6: Block layout 
