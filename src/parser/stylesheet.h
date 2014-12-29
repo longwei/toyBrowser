@@ -2,7 +2,7 @@
 #define STYLESHEET_H
 #include <QList>
 #include <QString>
-
+#include <QSharedPointer>
 #include <QVector>
 
 
@@ -13,26 +13,28 @@ enum Unit{
 
 class Value {
 public:
-    virtual QString toString();
-    QString m_value;
+    virtual QString toString() = 0;
 };
 
 
 class KeywordValue: public Value{
 public:
-    QString keyword;
+    KeywordValue(QString keyword);
+    QString m_keyword;
     QString toString();
 };
 
 class LengthValue: public Value{
 public:
-    Unit unit;
-    float length;
+    LengthValue(Unit u, float f);
+    Unit m_unit;
+    float m_length;
     QString toString();
 };
 
 class ColorValue: public Value{
 public:
+    ColorValue(int r, int g, int b, int a);
     int r;
     int g;
     int b;
@@ -40,19 +42,23 @@ public:
     QString toString();
 };
 
-struct SimpleSelector{
+class SimpleSelector{
+public:
     QString tagName;
     QString id;
     QVector<QString> classes;
     QString toString();
 };
 
-struct Declaration{
+class Declaration{
+public:
     QString name;
-    Value value;
+    QSharedPointer<Value> value;
+    QString toString();
 };
 
-struct Rule {
+class Rule {
+public:
     QVector<SimpleSelector> selectors;
     QVector<Declaration> declarations;
     QString toString();

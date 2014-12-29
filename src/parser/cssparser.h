@@ -18,9 +18,9 @@ public:
     SimpleSelector parseSimpleSelector();
     QVector<Declaration> parseDeclarations();
     Declaration parseDeclaration();
-    Value parseValue();
-    LengthValue parseLength();
-    ColorValue parseColor();
+    QSharedPointer<Value> parseValue();
+    QSharedPointer<LengthValue> parseLength();
+    QSharedPointer<ColorValue> parseColor();
     int parseHexPair();
     Unit parseUnit();
     float parserFloat();

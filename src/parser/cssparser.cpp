@@ -116,7 +116,7 @@ Declaration CSSParser::parseDeclaration(){
     consumeWhitespaceOrNewline();
     consumeChar(':');
     consumeWhitespaceOrNewline();
-    Value value = parseValue();
+    QSharedPointer<Value> value = parseValue();
     consumeWhitespaceOrNewline();
     consumeChar(';');
     Declaration ret{propertyName, value};
@@ -124,7 +124,7 @@ Declaration CSSParser::parseDeclaration(){
 }
 
 //auto, #000000, 78px
-Value CSSParser::parseValue(){
+QSharedPointer<Value> CSSParser::parseValue(){
 #ifdef CSS_DEBUG
     qDebug() << Q_FUNC_INFO;
 #endif /* CSS_DEBUG */
@@ -134,43 +134,31 @@ Value CSSParser::parseValue(){
     } else if (c == '#') {
         return parseColor();
     } else {
-        KeywordValue keyword;
-        keyword.keyword = parseIdentifier();
-        return keyword;
+//        QSharedPointer<KeywordValue> ret = QSharedPointer<KeywordValue>(new KeywordValue(parseIdentifier()));
+        return QSharedPointer<KeywordValue>(new KeywordValue(parseIdentifier()));
     }
     qDebug() << Q_FUNC_INFO << "enter a dead end";
 
 }
 
 //123px
-LengthValue CSSParser::parseLength(){
+QSharedPointer<LengthValue> CSSParser::parseLength(){
 #ifdef CSS_DEBUG
     qDebug() << Q_FUNC_INFO;
 #endif /* CSS_DEBUG */
-    float x = parserFloat();
-    Unit u = parseUnit();
-    LengthValue ret;
-    ret.length = x;
-    ret.unit = u;
-    return ret;
+    return QSharedPointer<LengthValue>(new LengthValue(parseUnit(), parserFloat()));
 }
 
 //#aabbcc
-ColorValue CSSParser::parseColor(){
+QSharedPointer<ColorValue> CSSParser::parseColor(){
 #ifdef CSS_DEBUG
     qDebug() << Q_FUNC_INFO;
 #endif /* CSS_DEBUG */
     consumeChar('#');
-    ColorValue ret;
     int r = parseHexPair();
     int g = parseHexPair();
     int b = parseHexPair();
-    ret.r = r;
-    ret.g = g;
-    ret.b = b;
-    ret.a = 255;
-
-    return ret;
+    return QSharedPointer<ColorValue>(new ColorValue(r,g,b, 255));
 }
 
 //11
