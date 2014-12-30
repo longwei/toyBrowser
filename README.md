@@ -19,7 +19,7 @@ Javascipr part:
 * then maybe replace it with some crapy rolled your own version?
 * events
 
-Sandbox:
+Sandbox/multiprocess/webkit2:
 * ....Not going to do it.
 
 REF:
@@ -35,7 +35,7 @@ Status
 - [x] Part 1: Getting started
 - [x] Part 2: HTML
 - [x] Part 3: CSS
-- [ ] Part 4: Style
+- [x] Part 4: Style
 - [ ] Part 5: Boxes
 - [ ] Part 6: Block layout 
 - [ ] Part 7: Painting 101

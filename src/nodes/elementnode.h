@@ -15,7 +15,7 @@ public:
     ~ElementNode();
     virtual QString toString();
     QSharedPointer<ElementNode> getElementById(QString id);
-    QList<ElementNode> getElementsByClassName(QStringList className);
+    QList<QSharedPointer<ElementNode> > getElementsByClassName(QStringList className);
 
 
 

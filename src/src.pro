@@ -2,9 +2,9 @@ include(../defaults.pri)
 
 CONFIG   += console
 CONFIG   -= app_bundle
+QT += widgets
 
 TEMPLATE = lib
-DEFINES += CSS_DEBUG
 
 CONFIG += staticlib
 TARGET = myapp
@@ -18,7 +18,8 @@ SOURCES += \
     parser/cssparser.cpp \
     parser/stylesheet.cpp \
     parser/cssrule.cpp \
-    document.cpp
+    document.cpp \
+    render/paintarea.cpp
 HEADERS += \
     nodes/elementnode.h \
     nodes/textnode.h \
@@ -29,4 +30,5 @@ HEADERS += \
     parser/cssparser.h \
     parser/stylesheet.h \
     parser/cssrule.h \
-    document.h
+    document.h \
+    render/paintarea.h
