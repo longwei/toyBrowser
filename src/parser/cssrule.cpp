@@ -12,6 +12,14 @@ QString SimpleSelector::toString(){
     return ret;
 }
 
+Specificity SimpleSelector::specificity(){
+    Specificity ret;
+    ret.a = (id.isEmpty() || id.isNull() )? 1 : 0;
+    ret.b = classes.size();
+    ret.c = (tagName.isEmpty() || tagName.isNull() ) ? 1 : 0;
+    return ret;
+}
+
 QString Rule::toString(){
     QString result;
     for(auto& selector: selectors){

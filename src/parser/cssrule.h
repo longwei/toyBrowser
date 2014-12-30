@@ -40,12 +40,19 @@ public:
     QString toString();
 };
 
+struct Specificity{
+    int a;
+    int b;
+    int c;
+};
+
 class SimpleSelector{
 public:
     QString tagName;
     QString id;
     QVector<QString> classes;
     QString toString();
+    Specificity specificity();
 };
 
 class Declaration{

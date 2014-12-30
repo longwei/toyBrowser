@@ -14,6 +14,8 @@ public:
                 const NodeVector children = NodeVector());
     ~ElementNode();
     virtual QString toString();
+    QSharedPointer<ElementNode> getElementById(QString id);
+    QList<ElementNode> getElementsByClassName(QStringList className);
 
 
 

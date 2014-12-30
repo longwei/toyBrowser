@@ -1,8 +1,6 @@
 #include "cssparser.h"
 #include <QDebug>
 
-#define CSS_DEBUG
-
 CSSParser::CSSParser(QString input):
     Parser(input)
 {
@@ -57,6 +55,7 @@ QVector<SimpleSelector> CSSParser::parseSimpleSelectors(){
             qDebug() << "Illegal character in selector list";
         }
     }
+    //todo sort selectors by specificity
     return selectors;
 
 }
