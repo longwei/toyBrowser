@@ -2,8 +2,7 @@
 
 #include "node.h"
 
-Node::Node(NodeType type, const NodeVector children, QObject *parent):
-    QObject(parent),
+Node::Node(NodeType type, const NodeVector children):
     m_children(children),
     m_nodetype(type)
 {

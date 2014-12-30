@@ -11,7 +11,7 @@ public:
     ~CSSParser();
 
 
-    Stylesheet parse();
+    QSharedPointer<Stylesheet> parse();
     QVector<Rule> parseRules();
     Rule parseRule();
     QVector<SimpleSelector> parseSimpleSelectors();

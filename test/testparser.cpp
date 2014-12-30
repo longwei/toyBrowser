@@ -52,12 +52,10 @@ void TestParser::domParse(){
 }
 
 void TestParser::cssParse(){
-//    QString input = "h1, h2, h3 { margin: auto; color: #cc0000; }";
-//    qDebug() << "***";
-//    CSSParser cssdom(input);
-//    qDebug() << "***";
-//    Stylesheet x = cssdom.parse();
-//    qDebug() << "parsefinished";
-//    qDebug() << x.toString();
+//    p {color: #00a300}
+    QString input = "h1, h2, h3 { margin: auto; color: #123456; } p {color: #00a300; }";
+    CSSParser cssdom(input);
+    QSharedPointer<Stylesheet> x = cssdom.parse();
+    qDebug() << x->toString();
 
 }

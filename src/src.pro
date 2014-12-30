@@ -4,20 +4,22 @@ CONFIG   += console
 CONFIG   -= app_bundle
 
 TEMPLATE = lib
-#DEFINES += CSS_DEBUG
+DEFINES += CSS_DEBUG
 
 CONFIG += staticlib
 TARGET = myapp
 
-SOURCES += myclass.cpp \
+SOURCES += \
     nodes/elementnode.cpp \
     nodes/textnode.cpp \
     nodes/node.cpp \
     parser/parser.cpp \
     parser/domparser.cpp \
     parser/cssparser.cpp \
-    parser/stylesheet.cpp
-HEADERS += myclass.h \
+    parser/stylesheet.cpp \
+    parser/cssrule.cpp \
+    document.cpp
+HEADERS += \
     nodes/elementnode.h \
     nodes/textnode.h \
     nodes/node.h \
@@ -25,4 +27,6 @@ HEADERS += myclass.h \
     parser/domparser.h \
     nodes/nodetypes.h \
     parser/cssparser.h \
-    parser/stylesheet.h
+    parser/stylesheet.h \
+    parser/cssrule.h \
+    document.h

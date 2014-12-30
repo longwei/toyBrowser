@@ -1,6 +1,8 @@
 #include "cssparser.h"
 #include <QDebug>
 
+#define CSS_DEBUG
+
 CSSParser::CSSParser(QString input):
     Parser(input)
 {
@@ -12,9 +14,9 @@ CSSParser::~CSSParser()
 
 }
 
-Stylesheet CSSParser::parse(){
-    Stylesheet stylesheet(parseRules());
-    return stylesheet;
+QSharedPointer<Stylesheet> CSSParser::parse(){
+//    Stylesheet stylesheet(parseRules());
+    return QSharedPointer<Stylesheet>(new Stylesheet(parseRules()));
 }
 
 QVector<Rule> CSSParser::parseRules(){
@@ -25,6 +27,7 @@ QVector<Rule> CSSParser::parseRules(){
     while(!eof()){
         consumeWhitespaceOrNewline();
         rules.append(parseRule());
+        consumeWhitespaceOrNewline();
     }
     //QVector is implicit sharing
     return rules;

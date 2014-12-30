@@ -1,7 +1,7 @@
 #include "textnode.h"
 
-TextNode::TextNode(const QString text, const NodeVector children, QObject *parent):
-    Node(Text, children, parent),
+TextNode::TextNode(const QString text, const NodeVector children):
+    Node(Text, children),
     m_text(text)
 {
 

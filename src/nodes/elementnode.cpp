@@ -3,8 +3,8 @@
 
 ElementNode::ElementNode(const QString tagName,
                          const AttributesMap attrs,
-                         const NodeVector children, QObject *parent):
-    Node(Element, children,parent),
+                         const NodeVector children):
+    Node(Element, children),
     m_tagName(tagName),
     m_attrs(attrs)
 {

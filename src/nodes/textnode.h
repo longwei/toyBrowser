@@ -7,8 +7,7 @@ class TextNode : public Node
 {
 public:
     TextNode(const QString text = QString(),
-             const NodeVector children = NodeVector(),
-             QObject *parent = 0);
+             const NodeVector children = NodeVector());
     ~TextNode();
     virtual void setText(QString text);
     QString getText();

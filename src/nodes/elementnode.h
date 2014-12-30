@@ -11,8 +11,7 @@ class ElementNode : public Node
 public:  
     ElementNode(const QString tagName,
                 const AttributesMap attrs = AttributesMap(),
-                const NodeVector children = NodeVector(),
-                QObject *parent = 0);
+                const NodeVector children = NodeVector());
     ~ElementNode();
     virtual QString toString();
 

@@ -1,25 +1,24 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <QObject>
-
+//#include <QObject>
+#include <QEnableSharedFromThis>
 #include "nodetypes.h"
 
-class Node : public QObject
+class Node : public QEnableSharedFromThis<Node>
 {
-    Q_OBJECT
 public:
     enum NodeType{
         Text = 1,
         Element = 2,
     };
     explicit Node(NodeType type,
-                  const NodeVector children = NodeVector(),
-                  QObject *parent = 0);
+                  const NodeVector children = NodeVector());
     virtual ~Node();
     virtual void addChildNode(QSharedPointer<Node> child);
     virtual void prettyPrint(QString prefix = QString());
     virtual QString toString();
+    QSharedPointer<Node> self(){ return sharedFromThis(); }
 
 protected:
     NodeVector m_children;

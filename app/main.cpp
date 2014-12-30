@@ -1,6 +1,5 @@
 #include <QApplication>
 #include <iostream>
-#include <myclass.h>
 #include <nodes/node.h>
 #include <nodes/elementnode.h>
 #include <nodes/textnode.h>
@@ -19,10 +18,10 @@ int main(int argc, char *argv[])
 //    root->prettyPrint();
 
 
-    QString input = "h1, h2, h3, { margin: auto; color: #123456; }";
-    CSSParser cssdom(input);
-    Stylesheet x = cssdom.parse();
-    qDebug() << x.toString();
+//    QString input = "h1, h2, h3, { margin: auto; color: #123456; }";
+//    CSSParser cssdom(input);
+//    Stylesheet x = cssdom.parse();
+//    qDebug() << x.toString();
 
     MainWindow w;
     w.show();
