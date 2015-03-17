@@ -32,6 +32,7 @@ C++ implementation of Matt Brubeck's blog "let's build a broweser engine"
 
 Status
 ------
+- [ ] Part 0: confront google style and use plain C++ not QOject
 - [x] Part 1: Getting started
 - [x] Part 2: HTML
 - [x] Part 3: CSS
